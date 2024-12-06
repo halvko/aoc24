@@ -51,7 +51,7 @@ fn main() -> Result<()> {
         let mut input = BadInput::new(reader);
         let mut lines = input.lines();
         let mut map = HashMap::<u32, HashSet<u32>>::new();
-        while let Some(l) = lines.next() {
+        for l in lines.by_ref() {
             if l.is_empty() {
                 break;
             }
@@ -96,7 +96,7 @@ fn main() -> Result<()> {
         let mut input = BadInput::new(reader);
         let mut lines = input.lines();
         let mut map = HashMap::<u32, HashSet<u32>>::new();
-        while let Some(l) = lines.next() {
+        for l in lines.by_ref() {
             if l.is_empty() {
                 break;
             }

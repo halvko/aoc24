@@ -63,25 +63,25 @@ fn main() -> Result<()> {
                     ) {
                         count += 1
                     }
-                    if l.len() > x + 3 {
-                        if is_xmas(
+                    if l.len() > x + 3
+                        && is_xmas(
                             once(lines[y][x])
                                 .chain(once(lines[y + 1][x + 1]))
                                 .chain(once(lines[y + 2][x + 2]))
                                 .chain(once(lines[y + 3][x + 3])),
-                        ) {
-                            count += 1
-                        }
+                        )
+                    {
+                        count += 1
                     }
-                    if x >= 3 {
-                        if is_xmas(
+                    if x >= 3
+                        && is_xmas(
                             once(lines[y][x])
                                 .chain(once(lines[y + 1][x - 1]))
                                 .chain(once(lines[y + 2][x - 2]))
                                 .chain(once(lines[y + 3][x - 3])),
-                        ) {
-                            count += 1
-                        }
+                        )
+                    {
+                        count += 1
                     }
                 }
                 if y >= 3 {
@@ -93,25 +93,25 @@ fn main() -> Result<()> {
                     ) {
                         count += 1
                     }
-                    if l.len() > x + 3 {
-                        if is_xmas(
+                    if l.len() > x + 3
+                        && is_xmas(
                             once(lines[y][x])
                                 .chain(once(lines[y - 1][x + 1]))
                                 .chain(once(lines[y - 2][x + 2]))
                                 .chain(once(lines[y - 3][x + 3])),
-                        ) {
-                            count += 1
-                        }
+                        )
+                    {
+                        count += 1
                     }
-                    if x >= 3 {
-                        if is_xmas(
+                    if x >= 3
+                        && is_xmas(
                             once(lines[y][x])
                                 .chain(once(lines[y - 1][x - 1]))
                                 .chain(once(lines[y - 2][x - 2]))
                                 .chain(once(lines[y - 3][x - 3])),
-                        ) {
-                            count += 1
-                        }
+                        )
+                    {
+                        count += 1
                     }
                 }
             }
