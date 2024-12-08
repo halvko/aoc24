@@ -59,38 +59,13 @@ fn main() -> Result<()> {
         for (_, coords) in antennas.iter() {
             for coord_1 in coords {
                 for coord_2 in coords.iter().filter(|&c| c != coord_1) {
-                    let diff_1 = [
+                    let diff = [
                         coord_1[0].wrapping_sub(coord_2[0]),
                         coord_1[1].wrapping_sub(coord_2[1]),
                     ];
-                    let diff_2 = [
-                        coord_2[0].wrapping_sub(coord_1[0]),
-                        coord_2[1].wrapping_sub(coord_1[1]),
-                    ];
                     let maybe_anti_zone = [
-                        coord_1[0].wrapping_add(diff_1[0]),
-                        coord_1[1].wrapping_add(diff_1[1]),
-                    ];
-                    if !coords.contains(&maybe_anti_zone) && coord_within(maybe_anti_zone) {
-                        anti_zones.insert(maybe_anti_zone);
-                    }
-                    let maybe_anti_zone = [
-                        coord_1[0].wrapping_add(diff_2[0]),
-                        coord_1[1].wrapping_add(diff_2[1]),
-                    ];
-                    if !coords.contains(&maybe_anti_zone) && coord_within(maybe_anti_zone) {
-                        anti_zones.insert(maybe_anti_zone);
-                    }
-                    let maybe_anti_zone = [
-                        coord_2[0].wrapping_add(diff_1[0]),
-                        coord_2[1].wrapping_add(diff_1[1]),
-                    ];
-                    if !coords.contains(&maybe_anti_zone) && coord_within(maybe_anti_zone) {
-                        anti_zones.insert(maybe_anti_zone);
-                    }
-                    let maybe_anti_zone = [
-                        coord_2[0].wrapping_add(diff_2[0]),
-                        coord_2[1].wrapping_add(diff_2[1]),
+                        coord_1[0].wrapping_add(diff[0]),
+                        coord_1[1].wrapping_add(diff[1]),
                     ];
                     if !coords.contains(&maybe_anti_zone) && coord_within(maybe_anti_zone) {
                         anti_zones.insert(maybe_anti_zone);
@@ -141,56 +116,17 @@ fn main() -> Result<()> {
         for (_, coords) in antennas.iter() {
             for coord_1 in coords {
                 for coord_2 in coords.iter().filter(|&c| c != coord_1) {
-                    let diff_1 = [
+                    let diff = [
                         coord_1[0].wrapping_sub(coord_2[0]),
                         coord_1[1].wrapping_sub(coord_2[1]),
                     ];
-                    let diff_2 = [
-                        coord_2[0].wrapping_sub(coord_1[0]),
-                        coord_2[1].wrapping_sub(coord_1[1]),
-                    ];
-                    let mut anti_zone = [
-                        coord_1[0].wrapping_add(diff_1[0]),
-                        coord_1[1].wrapping_add(diff_1[1]),
-                    ];
+
+                    let mut anti_zone = [coord_1[0], coord_1[1]];
                     while coord_within(anti_zone) {
                         anti_zones.insert(anti_zone);
                         anti_zone = [
-                            anti_zone[0].wrapping_add(diff_1[0]),
-                            anti_zone[1].wrapping_add(diff_1[1]),
-                        ];
-                    }
-                    let mut anti_zone = [
-                        coord_2[0].wrapping_add(diff_1[0]),
-                        coord_2[1].wrapping_add(diff_1[1]),
-                    ];
-                    while coord_within(anti_zone) {
-                        anti_zones.insert(anti_zone);
-                        anti_zone = [
-                            anti_zone[0].wrapping_add(diff_1[0]),
-                            anti_zone[1].wrapping_add(diff_1[1]),
-                        ];
-                    }
-                    let mut anti_zone = [
-                        coord_1[0].wrapping_add(diff_2[0]),
-                        coord_1[1].wrapping_add(diff_2[1]),
-                    ];
-                    while coord_within(anti_zone) {
-                        anti_zones.insert(anti_zone);
-                        anti_zone = [
-                            anti_zone[0].wrapping_add(diff_2[0]),
-                            anti_zone[1].wrapping_add(diff_2[1]),
-                        ];
-                    }
-                    let mut anti_zone = [
-                        coord_2[0].wrapping_add(diff_2[0]),
-                        coord_2[1].wrapping_add(diff_2[1]),
-                    ];
-                    while coord_within(anti_zone) {
-                        anti_zones.insert(anti_zone);
-                        anti_zone = [
-                            anti_zone[0].wrapping_add(diff_2[0]),
-                            anti_zone[1].wrapping_add(diff_2[1]),
+                            anti_zone[0].wrapping_add(diff[0]),
+                            anti_zone[1].wrapping_add(diff[1]),
                         ];
                     }
                 }
