@@ -6,17 +6,16 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::ops::BitAnd;
 
-const DAY: &str = "09"; // TODO: Fill the day
+const DAY: &str = "09";
 const INPUT_FILE: &str = concatcp!("input/", DAY, ".txt");
 
 const TEST: &str = "\
 2333133121414131402
-"; // TODO: Add the test input
+";
 
 fn main() -> Result<()> {
     start_day(DAY);
 
-    //region Part 1
     println!("=== Part 1 ===");
 
     fn part1<R: BufRead>(mut reader: R) -> Result<usize> {
@@ -65,18 +64,15 @@ fn main() -> Result<()> {
             curr_block += 1;
         }
 
-        return Ok(curr_check_sum);
+        Ok(curr_check_sum)
     }
 
-    // TODO: Set the expected answer for the test input
     assert_eq!(1928, part1(BufReader::new(TEST.as_bytes()))?);
 
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part1(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
-    //region Part 2
     println!("\n=== Part 2 ===");
 
     fn part2<R: BufRead>(mut reader: R) -> Result<usize> {
@@ -92,9 +88,7 @@ fn main() -> Result<()> {
 
         let mut expanded_file = Vec::new();
         for (i, e) in file.iter().copied().enumerate() {
-            for _ in 0..e {
-                expanded_file.push(if i % 2 == 0 { i / 2 } else { usize::MAX })
-            }
+            expanded_file.extend((0..e).map(|_| if i % 2 == 0 { i / 2 } else { usize::MAX }));
         }
 
         let mut curr_pos = expanded_file.len() - 1;
@@ -157,7 +151,6 @@ fn main() -> Result<()> {
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part2(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
     Ok(())
 }

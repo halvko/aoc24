@@ -15,16 +15,14 @@ const TEST: &str = "\
 1 3 2 4 5
 8 6 4 4 1
 1 3 6 7 9
-"; // TODO: Add the test input
+";
 
 fn main() -> Result<()> {
     start_day(DAY);
 
-    //region Part 1
     println!("=== Part 1 ===");
 
     fn part1<R: BufRead>(reader: R) -> Result<usize> {
-        // TODO: Solve Part 1 of the puzzle
         let mut input = bad_input::BadInput::new(reader);
         let answer = input
             .lines()
@@ -41,15 +39,12 @@ fn main() -> Result<()> {
         Ok(answer)
     }
 
-    // TODO: Set the expected answer for the test input
     assert_eq!(2, part1(BufReader::new(TEST.as_bytes()))?);
 
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part1(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
-    //region Part 2
     println!("\n=== Part 2 ===");
 
     fn part2<R: BufRead>(reader: R) -> Result<usize> {
@@ -91,7 +86,6 @@ fn main() -> Result<()> {
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part2(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
     Ok(())
 }

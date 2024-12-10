@@ -5,7 +5,7 @@ use const_format::concatcp;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-const DAY: &str = "07"; // TODO: Fill the day
+const DAY: &str = "07";
 const INPUT_FILE: &str = concatcp!("input/", DAY, ".txt");
 
 const TEST: &str = "\
@@ -18,7 +18,7 @@ const TEST: &str = "\
 192: 17 8 14
 21037: 9 7 18 13
 292: 11 6 16 20
-"; // TODO: Add the test input
+";
 
 fn main() -> Result<()> {
     start_day(DAY);
@@ -31,14 +31,12 @@ fn main() -> Result<()> {
             }
             *val = 0;
         }
-        return false;
+        false
     }
 
-    //region Part 1
     println!("=== Part 1 ===");
 
     fn part1<R: BufRead>(reader: R) -> Result<usize> {
-        // TODO: Solve Part 1 of the puzzle
         let answer = reader
             .lines()
             .map(|l| l.unwrap())
@@ -78,19 +76,15 @@ fn main() -> Result<()> {
         Ok(answer)
     }
 
-    // TODO: Set the expected answer for the test input
     assert_eq!(3749, part1(BufReader::new(TEST.as_bytes()))?);
 
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part1(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
-    //region Part 2
     println!("\n=== Part 2 ===");
 
     fn part2<R: BufRead>(reader: R) -> Result<usize> {
-        // TODO: Solve Part 1 of the puzzle
         let answer = reader
             .lines()
             .map(|l| l.unwrap())
@@ -148,7 +142,6 @@ fn main() -> Result<()> {
     let input_file = BufReader::new(File::open(INPUT_FILE)?);
     let result = time_snippet!(part2(input_file)?);
     println!("Result = {}", result);
-    //endregion
 
     Ok(())
 }
